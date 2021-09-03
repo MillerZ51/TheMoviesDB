@@ -71,7 +71,6 @@ struct ContentView: View {
                         bindingValues.selectedTabIndex = num
                         bindingValues.isFullMovieView = false
                         bindingValues.getData()
-                        print("button pressed /delete msg")
                         
                     }, label: {
                         Spacer()
