@@ -9,8 +9,11 @@ import Foundation
 
 class BindingValues: ObservableObject {
     
+    let apiKey = "?api_key=2c46288716a18fb7aadcc2a801f3fc6b"
     let popMoviesURL = "https://api.themoviedb.org/3/movie/popular?api_key=2c46288716a18fb7aadcc2a801f3fc6b"
     let newMoviesURL = "https://api.themoviedb.org/3/movie/now_playing?api_key=2c46288716a18fb7aadcc2a801f3fc6b"
+    let page = "&page=" //Number
+    @Published var pageNumber = 1
     
     @Published var selectedTabIndex = 0
     
@@ -98,12 +101,12 @@ class BindingValues: ObservableObject {
     
     func getData() {
         var usedURL: String = ""
-        if selectedTabIndex == 0 {
-            usedURL = popMoviesURL
+        if selectedTabIndex == 0 { //index of page
+            usedURL = popMoviesURL + page + String(pageNumber)
         } else if selectedTabIndex == 1 {
-            usedURL = newMoviesURL
+            //usedURL = newMoviesURL
         } else {
-            usedURL = newMoviesURL
+            usedURL = newMoviesURL + page + String(pageNumber)
         }
         
         URLSession.shared.dataTask(with: URL(string: usedURL)!, completionHandler: { data, response, error in

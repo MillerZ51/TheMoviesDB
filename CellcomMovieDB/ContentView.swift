@@ -70,6 +70,7 @@ struct ContentView: View {
                     Button(action: {
                         bindingValues.selectedTabIndex = num
                         bindingValues.isFullMovieView = false
+                        bindingValues.pageNumber = 1
                         bindingValues.getData()
                         
                     }, label: {
@@ -282,7 +283,7 @@ struct ContentView: View {
                     singleMovieView(index: index)
                         .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
                 }
-                .id(UUID())
+                nextPage()
             })
         }
         .onAppear{
@@ -340,6 +341,28 @@ struct ContentView: View {
             
             Spacer()
         }
+    }
+    
+    func nextPage() -> some View {
+        Button (action: {
+            bindingValues.pageNumber = bindingValues.pageNumber + 1
+            bindingValues.getData()
+            
+        }, label: {
+            ZStack {
+                Rectangle()
+                    .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
+                    .foregroundColor(.blue)
+                Text("Load more..")
+                    .font(.body)
+                    .bold()
+                    .minimumScaleFactor(0.5)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+            }
+        })
+        .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
+        .scaledToFit()
     }
 }
 
