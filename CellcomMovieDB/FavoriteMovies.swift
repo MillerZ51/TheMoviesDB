@@ -104,10 +104,9 @@ struct FavoriteMovies: View {
         }
     }
 }
-/*
+
 struct FacoriteMovies_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteMovies()
+        FavoriteMovies(bindingValues: BindingValues())
     }
 }
-*/
