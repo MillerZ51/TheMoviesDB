@@ -17,10 +17,11 @@ struct PopMovieWindow: View {
         HStack {
             Image(systemName: "person.fill")
                 .data(url: URL(string: bindingValues.imagePath + (bindingValues.movieImage))!)
+                .resizable()
                 .frame(width: UIScreen.main.bounds.width / 3.5, height: UIScreen.main.bounds.height / 3, alignment: .center)
                 .border(Color.black)
-                .padding(.trailing, 5)
                 .scaledToFit()
+                .padding(.trailing, 5)
             
             VStack {
                 VStack {

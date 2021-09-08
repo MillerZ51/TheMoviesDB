@@ -23,7 +23,7 @@ struct FavoriteMovies: View {
     
     var body: some View {
         ScrollView {
-            if bindingValues.moviesCapacity == 0{
+            if bindingValues.favoriteMoviesCapacity == 0{
                 VStack {
                     Spacer()
                     Text("No Favorite Movies")
@@ -38,7 +38,7 @@ struct FavoriteMovies: View {
                 }
             } else {
                 LazyVGrid(columns: gridLayout, content: {
-                    ForEach(0..<bindingValues.moviesCapacity, id: \.self) { index in
+                    ForEach(0..<bindingValues.favoriteMoviesCapacity, id: \.self) { index in
                         singleFavoriteMovieView(index: Int(index))
                     }
                  //   .id(UUID())

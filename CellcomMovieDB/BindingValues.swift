@@ -36,13 +36,13 @@ class BindingValues: ObservableObject {
         }
     }
     
-    @Published var moviesCapacity = 0
-    @Published var allMoviesCapacity = 0
+    @Published var favoriteMoviesCapacity = 0
+    @Published var pageMoviesCapacity = 0
     @Published var dateValue: Double = 0.0
     
     @Published var allTitles: [String] = ["Title"] {
         didSet {
-            allMoviesCapacity = allTitles.capacity
+            pageMoviesCapacity = allTitles.capacity
         }
     }
     @Published var allOverviews: [String] = []
@@ -51,7 +51,7 @@ class BindingValues: ObservableObject {
     
     @Published var titles = ["Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title"] {
           didSet {
-              moviesCapacity = titles.capacity
+              favoriteMoviesCapacity = titles.capacity
           }
       }
     @Published var overviews = ["Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title"]
@@ -94,9 +94,8 @@ class BindingValues: ObservableObject {
         self.overviews = favorite.map({return $0.overview})
         self.years = favorite.map({return $0.year})
         self.posters = favorite.map({return $0.posterImage})
-        self.moviesCapacity = self.titles.capacity
+        self.favoriteMoviesCapacity = self.titles.capacity
     }
-    
     
     
     

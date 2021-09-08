@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct MoviesPageLayout: View {
     
     @ObservedObject var bindingValues: BindingValues
@@ -24,9 +25,8 @@ struct MoviesPageLayout: View {
         ScrollView {
             ScrollViewReader { value in
                 LazyVGrid(columns: gridLayout, content: {
-                    ForEach(0..<bindingValues.allMoviesCapacity, id: \.self) { index in
+                    ForEach(0..<bindingValues.pageMoviesCapacity, id: \.self) { index in
                         singleMovieView(index: index)
-                            .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
                             .id(index)
                     }
 
@@ -93,12 +93,13 @@ struct MoviesPageLayout: View {
         })
     }
     
-    func imageFunc(index: Int) -> some View {
+    func imageFunc(index: Int) -> some View {  //Image from URL and not ontop of system image....  ###################################
         Image(systemName: "person.fill")
             .data(url: URL(string: bindingValues.imagePath + bindingValues.allPosters[index])!)
-            .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
+            .resizable()
             .scaledToFit()
     }
+    
     
     func titleAndYearFunc(index: Int) -> some View {
         HStack {

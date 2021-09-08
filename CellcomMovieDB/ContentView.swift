@@ -58,12 +58,10 @@ struct ContentView: View {
         VStack {
             switch bindingValues.selectedTabIndex { //Page
             case 0:
-               // moviesOnTopOfMovies
                 MoviesPageLayout(bindingValues: bindingValues)
             case 1:
                 FavoriteMovies(bindingValues: bindingValues)
             default:
-              //  moviesOnTopOfMovies
                 MoviesPageLayout(bindingValues: bindingValues)
             }
             HStack { //Tab Buttons
@@ -102,4 +100,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
