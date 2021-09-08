@@ -25,7 +25,6 @@ struct ContentView: View {
     @ObservedObject var bindingValues = BindingValues()
     @State var movie: Movie?
 
-    let imagePath = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2"
     let tabsNames = ["Popular", "Favorite", "Now Playing"]
     let thirdScreenWidth = UIScreen.main.bounds.width / 3
     let thirdScreenHeight = UIScreen.main.bounds.height / 3
@@ -61,7 +60,7 @@ struct ContentView: View {
             case 0:
                 moviesOnTopOfMovies
             case 1:
-                myFavoriteMovies
+                FavoriteMovies(bindingValues: bindingValues)
             default:
                 moviesOnTopOfMovies
             }
@@ -98,7 +97,7 @@ struct ContentView: View {
         ZStack {
         HStack {
             Image(systemName: "person.fill")
-                .data(url: URL(string: imagePath + (bindingValues.movieImage))!)
+                .data(url: URL(string: bindingValues.imagePath + (bindingValues.movieImage))!)
                 .frame(width: UIScreen.main.bounds.width / 3.5, height: UIScreen.main.bounds.height / 3, alignment: .center)
                 .border(Color.black)
                 .padding(.trailing, 5)
@@ -231,7 +230,7 @@ struct ContentView: View {
             ZStack {
            //     Image(URL(string: imagePath + bindingValues.Posters[index]))
                 Image(systemName: "person.fill")
-                    .data(url: URL(string: imagePath + bindingValues.posters[index])!)
+                    .data(url: URL(string: bindingValues.imagePath + bindingValues.posters[index])!)
                     .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
                     .scaledToFit()
                 VStack {
@@ -350,7 +349,7 @@ struct ContentView: View {
     
     func imageFunc(index: Int) -> some View {
         Image(systemName: "person.fill")
-            .data(url: URL(string: imagePath + bindingValues.allPosters[index])!)
+            .data(url: URL(string: bindingValues.imagePath + bindingValues.allPosters[index])!)
             .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
             .scaledToFit()
     }

@@ -19,6 +19,8 @@ class BindingValues: ObservableObject {
     
     @Published var isFullMovieView: Bool = false
     
+    let imagePath = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2"
+    
     //popover view
     @Published var movieTitle = "Title"
     @Published var movieYear = "Year"
