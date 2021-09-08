@@ -104,7 +104,7 @@ class BindingValues: ObservableObject {
         if selectedTabIndex == 0 { //index of page
             usedURL = popMoviesURL + page + String(pageNumber)
         } else if selectedTabIndex == 1 {
-            //usedURL = newMoviesURL
+            usedURL = newMoviesURL
         } else {
             usedURL = newMoviesURL + page + String(pageNumber)
         }

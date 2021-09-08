@@ -278,13 +278,37 @@ struct ContentView: View {
     
     var moviesOnTopOfMovies: some View {
         ScrollView {
-            LazyVGrid(columns: gridLayout, content: {
-                ForEach(0..<bindingValues.allMoviesCapacity, id: \.self) { index in
-                    singleMovieView(index: index)
-                        .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
-                }
-                nextPage()
-            })
+            ScrollViewReader { value in
+                LazyVGrid(columns: gridLayout, content: {
+                    ForEach(0..<bindingValues.allMoviesCapacity, id: \.self) { index in
+                        singleMovieView(index: index)
+                            .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
+                            .id(index)
+                    }
+
+                    //Next Page
+                    Button (action: {
+                        bindingValues.pageNumber = bindingValues.pageNumber + 1
+                        bindingValues.getData()
+                        
+                        value.scrollTo(1, anchor: .top)
+                    }, label: {
+                        ZStack {
+                            Rectangle()
+                                .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
+                                .foregroundColor(.blue)
+                            Text("Load more..")
+                                .font(.body)
+                                .bold()
+                                .minimumScaleFactor(0.5)
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.center)
+                        }
+                    })
+                    .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
+                    .scaledToFit()
+                })
+            }
         }
         .onAppear{
             bindingValues.getData()
@@ -341,28 +365,6 @@ struct ContentView: View {
             
             Spacer()
         }
-    }
-    
-    func nextPage() -> some View {
-        Button (action: {
-            bindingValues.pageNumber = bindingValues.pageNumber + 1
-            bindingValues.getData()
-            
-        }, label: {
-            ZStack {
-                Rectangle()
-                    .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
-                    .foregroundColor(.blue)
-                Text("Load more..")
-                    .font(.body)
-                    .bold()
-                    .minimumScaleFactor(0.5)
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-            }
-        })
-        .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
-        .scaledToFit()
     }
 }
 
