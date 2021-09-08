@@ -86,11 +86,11 @@ struct FavoriteMovies: View {
             VStack {
                 HStack {
                     Spacer()
-                    Button(action:{  //SAVE MOVIE TO JSON FILE
+                    Button(action:{
                         bindingValues.movieTitle = bindingValues.titles[index]
                         bindingValues.delete()
                     }, label:{
-                        Image(systemName: "heart.fill") //fill if in JSON file
+                        Image(systemName: "heart.fill")
                             .foregroundColor(.red)
                             .font(.system(size: 30))
                             .frame(width: 50, height: 50, alignment: .center)

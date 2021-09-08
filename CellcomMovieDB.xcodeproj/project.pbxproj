@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		7B45907326DDFB8E008B9C52 /* BindingValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B45907226DDFB8E008B9C52 /* BindingValues.swift */; };
 		7B56532926E8BAC700DA9F16 /* FavoriteMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B56532826E8BAC700DA9F16 /* FavoriteMovies.swift */; };
+		7B56532D26E8C22A00DA9F16 /* PopMovieWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B56532C26E8C22A00DA9F16 /* PopMovieWindow.swift */; };
 		7BD8CD8326D3BD2F00F0E893 /* CellcomMovieDBApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD8CD8226D3BD2F00F0E893 /* CellcomMovieDBApp.swift */; };
 		7BD8CD8526D3BD2F00F0E893 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD8CD8426D3BD2F00F0E893 /* ContentView.swift */; };
 		7BD8CD8726D3BD3000F0E893 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BD8CD8626D3BD3000F0E893 /* Assets.xcassets */; };
-		7BD8CD8A26D3BD3000F0E893 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BD8CD8926D3BD3000F0E893 /* Preview Assets.xcassets */; };
 		7BD8CD9226D3C06100F0E893 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD8CD9126D3C06100F0E893 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7B45907226DDFB8E008B9C52 /* BindingValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingValues.swift; sourceTree = "<group>"; };
 		7B56532826E8BAC700DA9F16 /* FavoriteMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMovies.swift; sourceTree = "<group>"; };
+		7B56532C26E8C22A00DA9F16 /* PopMovieWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopMovieWindow.swift; sourceTree = "<group>"; };
 		7BD8CD7F26D3BD2F00F0E893 /* CellcomMovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CellcomMovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD8CD8226D3BD2F00F0E893 /* CellcomMovieDBApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellcomMovieDBApp.swift; sourceTree = "<group>"; };
 		7BD8CD8426D3BD2F00F0E893 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7BD8CD8626D3BD3000F0E893 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7BD8CD8926D3BD3000F0E893 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7BD8CD8B26D3BD3000F0E893 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BD8CD9126D3C06100F0E893 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +66,7 @@
 				7BD8CD9126D3C06100F0E893 /* Model.swift */,
 				7BD8CD8826D3BD3000F0E893 /* Preview Content */,
 				7B56532826E8BAC700DA9F16 /* FavoriteMovies.swift */,
+				7B56532C26E8C22A00DA9F16 /* PopMovieWindow.swift */,
 			);
 			path = CellcomMovieDB;
 			sourceTree = "<group>";
@@ -73,7 +74,6 @@
 		7BD8CD8826D3BD3000F0E893 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				7BD8CD8926D3BD3000F0E893 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -135,7 +135,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BD8CD8A26D3BD3000F0E893 /* Preview Assets.xcassets in Resources */,
 				7BD8CD8726D3BD3000F0E893 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B56532D26E8C22A00DA9F16 /* PopMovieWindow.swift in Sources */,
 				7BD8CD9226D3C06100F0E893 /* Model.swift in Sources */,
 				7BD8CD8526D3BD2F00F0E893 /* ContentView.swift in Sources */,
 				7B56532926E8BAC700DA9F16 /* FavoriteMovies.swift in Sources */,
