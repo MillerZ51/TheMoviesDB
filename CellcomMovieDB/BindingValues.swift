@@ -145,4 +145,8 @@ class BindingValues: ObservableObject {
         self.save()
     }
     
+    func cacheImages() {
+        
+    }
+    
 }

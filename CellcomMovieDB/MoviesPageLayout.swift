@@ -100,6 +100,11 @@ struct MoviesPageLayout: View {
             .scaledToFit()
     }
     
+    func imageFunction(index: Int) -> some View {  //Image from URL and not ontop of system image....  ###################################
+        UrlImageView(urlString: bindingValues.imagePath + bindingValues.allPosters[index])
+            //.resizable()
+            //.scaledToFit()
+    }
     
     func titleAndYearFunc(index: Int) -> some View {
         HStack {
