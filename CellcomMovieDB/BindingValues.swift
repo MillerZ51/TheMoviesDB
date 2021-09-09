@@ -76,6 +76,7 @@ class BindingValues: ObservableObject {
     
     func save() {
         if let encoded = try? JSONEncoder().encode(favorite) {
+            //download images ###############################################
             UserDefaults.standard.set(encoded, forKey: "favorite")
         }
     }

@@ -39,7 +39,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             tabViewApp
-            
+                
             if bindingValues.isFullMovieView == true {
                 PopMovieWindow(bindingValues: self.bindingValues)
             }
@@ -67,11 +67,12 @@ struct ContentView: View {
             HStack { //Tab Buttons
                 ForEach(0..<3) { num in
                     Button(action: {
-                        bindingValues.selectedTabIndex = num
-                        bindingValues.isFullMovieView = false
-                        bindingValues.pageNumber = 1
-                        bindingValues.getData()
-                        
+                        DispatchQueue.main.async {
+                            bindingValues.selectedTabIndex = num
+                            bindingValues.isFullMovieView = false
+                            bindingValues.pageNumber = 1
+                            bindingValues.getData()
+                        }
                     }, label: {
                         Spacer()
                         if num == bindingValues.selectedTabIndex {

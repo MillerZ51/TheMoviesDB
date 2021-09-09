@@ -23,35 +23,7 @@ struct PopMovieWindow: View {
                 .scaledToFit()
                 .padding(.trailing, 5)
             
-            VStack {
-                VStack {
-                    HStack {
-                        Text(bindingValues.movieTitle)
-                            .bold()
-                            .padding(.top, 15)
-                            .padding(.trailing, 15)
-                            .multilineTextAlignment(.leading)
-                            .minimumScaleFactor(0.5)
-                        Spacer()
-                    }
-                    HStack {
-                        Text(bindingValues.movieYear)
-                            .font(.caption)
-                            .bold()
-                            .multilineTextAlignment(.leading)
-                            .scaledToFill()
-                        Spacer()
-                    }
-                }
-                ScrollView {
-                    Text(bindingValues.movieOverview)
-                        .font(.caption)
-                        .padding(.bottom, 15)
-                        .multilineTextAlignment(.leading)
-                    Text("\n\n")
-                }
-                Spacer()
-            }
+            movieDetail
             Spacer()
         }
             HStack {
@@ -80,7 +52,36 @@ struct PopMovieWindow: View {
         .frame(width: UIScreen.main.bounds.width - 50, height: UIScreen.main.bounds.height / 3, alignment: .center)
         .border(Color.black)
         .background(Color.blue)
-        .scaledToFill()
+    }
+    
+    var movieDetail: some View {
+        VStack {
+            VStack {
+                Text(bindingValues.movieTitle)
+                    .bold()
+                    .padding(.top, 15)
+                    .padding(.trailing, 15)
+                    .multilineTextAlignment(.leading)
+                    .minimumScaleFactor(0.5)
+                    
+                HStack {
+                    Text(bindingValues.movieYear)
+                        .font(.caption)
+                        .bold()
+                        .multilineTextAlignment(.leading)
+                        .scaledToFill()
+                    Spacer()
+                }
+            }
+            ScrollView {
+                Text(bindingValues.movieOverview)
+                    .font(.caption)
+                    .padding(.bottom, 15)
+                    .multilineTextAlignment(.leading)
+                Text("\n\n")
+            }
+            Spacer()
+        }
     }
     
     var heartButtonUnfill: some View {
