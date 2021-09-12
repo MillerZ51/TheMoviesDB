@@ -23,42 +23,78 @@ struct MoviesPageLayout: View {
     ]
     
     var body: some View {
-        ScrollView {
-            ScrollViewReader { value in
-                LazyVGrid(columns: gridLayout, content: {
-                    ForEach(0..<bindingValues.pageMoviesCapacity, id: \.self) { index in
-                        singleMovieView(index: index)
-                            .id(index)
-                    }
+        VStack {
+            if bindingValues.pageNumber != 1 {
+                Button(action: {
+                    previousPage()
 
-                    //Next Page - "Load more..."
-                    Button (action: {
-                        bindingValues.pageNumber = bindingValues.pageNumber + 1
-                        bindingValues.getData()
-                        bindingValues.isFullMovieView = false
-                        
-                        value.scrollTo(1, anchor: .top)
-                    }, label: {
-                        ZStack {
-                            Rectangle()
-                                .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
-                                .foregroundColor(.blue)
-                            Text("Load more...")
-                                .font(.body)
-                                .bold()
-                                .minimumScaleFactor(0.5)
-                                .foregroundColor(.white)
-                                .multilineTextAlignment(.center)
-                        }
-                    })
-                    .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
-                    .scaledToFit()
+                }, label: {
+                    VStack {
+                        Text("Previous Page..")
+                            .foregroundColor(.white)
+                            .font(.title3)
+                            .bold()
+                            .multilineTextAlignment(.center)
+                            .frame(width: 200, height: 50, alignment: .center)
+                        Image(systemName: "arrowshape.turn.up.left")
+                            .accentColor(.white)
+                    }
+                    .padding(.vertical)
                 })
             }
+            ScrollView {
+                ScrollViewReader { value in
+                    
+                    LazyVGrid(columns: gridLayout, content: {
+                        ForEach(0..<bindingValues.pageMoviesCapacity, id: \.self) { index in
+                            singleMovieView(index: index)
+                                .id(index)
+                        }
+
+                        //Next Page - "Load more..."
+                        Button (action: {
+                            nextPage()
+                            
+                            value.scrollTo(1, anchor: .top)
+                        }, label: {
+                            ZStack {
+                                Rectangle()
+                                    .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
+                                    .foregroundColor(.blue)
+                                VStack {
+                                    Text("Load more...")
+                                        .font(.body)
+                                        .bold()
+                                        .minimumScaleFactor(0.5)
+                                        .foregroundColor(.white)
+                                        .multilineTextAlignment(.center)
+                                    Image(systemName: "arrowshape.turn.up.right")
+                                        .accentColor(.white)
+                                }
+                                .padding(.vertical)
+                            }
+                        })
+                        .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
+                        .scaledToFit()
+                    })
+                }
+            }
+            .onAppear{
+                bindingValues.getData()
+            }
         }
-        .onAppear{
-            bindingValues.getData()
-        }
+    }
+    
+    func nextPage() {
+        bindingValues.pageNumber = bindingValues.pageNumber + 1
+        bindingValues.getData()
+        bindingValues.isFullMovieView = false
+    }
+    
+    func previousPage() {
+        bindingValues.pageNumber = bindingValues.pageNumber - 1
+        bindingValues.getData()
+        bindingValues.isFullMovieView = false
     }
     
     func singleMovieView(index: Int) -> some View {

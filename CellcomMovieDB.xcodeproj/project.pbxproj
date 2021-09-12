@@ -134,6 +134,7 @@
 			mainGroup = 7BD8CD7626D3BD2F00F0E893;
 			packageReferences = (
 				7B8BD35F26EE2D3D00690B77 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				7B8BD36226EE493D00690B77 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 			);
 			productRefGroup = 7BD8CD8026D3BD2F00F0E893 /* Products */;
 			projectDirPath = "";
@@ -364,6 +365,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 6.3.1;
+			};
+		};
+		7B8BD36226EE493D00690B77 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timbersoftware/SwiftUIRefresh.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

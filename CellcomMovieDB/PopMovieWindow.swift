@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PopMovieWindow: View {
     
@@ -14,18 +15,17 @@ struct PopMovieWindow: View {
     
     var body: some View {
         ZStack {
-        HStack {
-            Image(systemName: "person.fill")
-                .data(url: URL(string: bindingValues.imagePath + (bindingValues.movieImage))!)
-                .resizable()
-                .frame(width: UIScreen.main.bounds.width / 3.5, height: UIScreen.main.bounds.height / 3, alignment: .center)
-                .border(Color.black)
-                .scaledToFit()
-                .padding(.trailing, 5)
-            
-            movieDetail
-            Spacer()
-        }
+            HStack {
+                KFImage(URL(string: bindingValues.imagePath + bindingValues.movieImage))
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width / 3.5, height: UIScreen.main.bounds.height / 3, alignment: .center)
+                    .border(Color.black)
+                    .scaledToFit()
+                    .padding(.trailing, 5)
+                
+                movieDetail
+                Spacer()
+            }
             HStack {
                 Spacer()
                 VStack {
