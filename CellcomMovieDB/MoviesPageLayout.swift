@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 
 struct MoviesPageLayout: View {
@@ -69,7 +70,7 @@ struct MoviesPageLayout: View {
             bindingValues.isFullMovieView = true
         }, label: {
             ZStack {
-                imageFunc(index: index) //index
+                imageFunction(index: index) //index
                 VStack {
                     Spacer()
                     ZStack {
@@ -93,17 +94,10 @@ struct MoviesPageLayout: View {
         })
     }
     
-    func imageFunc(index: Int) -> some View {  //Image from URL and not ontop of system image....  ###################################
-        Image(systemName: "person.fill")
-            .data(url: URL(string: bindingValues.imagePath + bindingValues.allPosters[index])!)
+    func imageFunction(index: Int) -> some View {  //Image from URL and not ontop of system image....  ###################################
+        KFImage(URL(string: bindingValues.imagePath + bindingValues.allPosters[index]))
             .resizable()
             .scaledToFit()
-    }
-    
-    func imageFunction(index: Int) -> some View {  //Image from URL and not ontop of system image....  ###################################
-        UrlImageView(urlString: bindingValues.imagePath + bindingValues.allPosters[index])
-            //.resizable()
-            //.scaledToFit()
     }
     
     func titleAndYearFunc(index: Int) -> some View {

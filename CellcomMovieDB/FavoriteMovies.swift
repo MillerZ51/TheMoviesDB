@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 
 struct FavoriteMovies: View {
@@ -57,11 +58,7 @@ struct FavoriteMovies: View {
             bindingValues.isFullMovieView = true
         }, label: {
             ZStack {
-           //     Image(URL(string: imagePath + bindingValues.Posters[index]))
-                Image(systemName: "person.fill")
-                    .data(url: URL(string: bindingValues.imagePath + bindingValues.posters[index])!)
-                    .frame(width: thirdScreenWidth, height: thirdScreenHeight, alignment: .center)
-                    .scaledToFit()
+                imageFunction(index: index)
                 VStack {
                     Spacer()
                     ZStack {
@@ -102,6 +99,12 @@ struct FavoriteMovies: View {
                 Spacer()
             }
         }
+    }
+    
+    func imageFunction(index: Int) -> some View {  //Image from URL and not ontop of system image....  ###################################
+        KFImage(URL(string: bindingValues.imagePath + bindingValues.posters[index]))
+            .resizable()
+            .scaledToFit()
     }
 }
 
