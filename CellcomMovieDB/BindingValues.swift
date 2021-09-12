@@ -29,34 +29,25 @@ class BindingValues: ObservableObject {
     
     @Published var popularMovies: [Movie] = []
     
-    @Published var favorite: [Movie] = [] {
-        didSet {
-            save()
-            copy()
-        }
-    }
+    @Published var favorite: [Movie] = [] {didSet {save(); copy()}}
     
     @Published var favoriteMoviesCapacity = 0
     @Published var pageMoviesCapacity = 0
     @Published var dateValue: Double = 0.0
     
-    @Published var allTitles: [String] = ["Title"] {
-        didSet {
-            pageMoviesCapacity = allTitles.capacity
-        }
-    }
+    //Popular and Now Playing Movies
+    @Published var allTitles = [String](repeating: "Title", count: 20) {
+        didSet { pageMoviesCapacity = allTitles.capacity }}
     @Published var allOverviews: [String] = []
     @Published var allYears: [String] = []
     @Published var allPosters: [String] = []
     
-    @Published var titles = ["Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title"] {
-          didSet {
-              favoriteMoviesCapacity = titles.capacity
-          }
-      }
-    @Published var overviews = ["Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title"]
-    @Published var years = ["Year      ", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title"]
-    @Published var posters = ["Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title", "Title"]
+    //Favorite Movies
+    @Published var favTitles = [String](repeating: "Title", count: 20) {
+         didSet { favoriteMoviesCapacity = favTitles.capacity }}
+    @Published var favOverviews: [String] = []
+    @Published var favYears: [String] = []
+    @Published var favPosters: [String] = []
     
     
     func loadFromUserDefaults() {
@@ -68,22 +59,25 @@ class BindingValues: ObservableObject {
         self.popularMovies = savedMovies
     }
     
-    //Favorites
-    func delete() {
-        let index = self.titles.firstIndex(of: self.movieTitle)
+    func delete() {     //Favorites
+        let index = self.favTitles.firstIndex(of: self.movieTitle)
         self.favorite.remove(at: index ?? 0)
     }
     
-    func save() {
+    func save() {     //Favorites
         if let encoded = try? JSONEncoder().encode(favorite) {
-            //download images ###############################################
             UserDefaults.standard.set(encoded, forKey: "favorite")
         }
     }
     
+    func saveFavoriteData() {     //Favorites
+        self.favorite.append(Movie(title: movieTitle, year: movieYear, posterImage: movieImage, overview: movieOverview))
+        self.save()
+    }
+    
     func get() {
         guard
-            let data = UserDefaults.standard.data(forKey: "favorite"),
+            let data = UserDefaults.standard.data(forKey: "favorite"),     //Favorites
             let savedMovies = try? JSONDecoder().decode([Movie].self, from: data)
         else { return }
         
@@ -91,17 +85,14 @@ class BindingValues: ObservableObject {
     }
     
     func copy() {
-        self.titles = favorite.map({return $0.title})
-        self.overviews = favorite.map({return $0.overview})
-        self.years = favorite.map({return $0.year})
-        self.posters = favorite.map({return $0.posterImage})
-        self.favoriteMoviesCapacity = self.titles.capacity
+        self.favTitles = favorite.map({return $0.title})
+        self.favOverviews = favorite.map({return $0.overview})
+        self.favYears = favorite.map({return $0.year})
+        self.favPosters = favorite.map({return $0.posterImage})
+        self.favoriteMoviesCapacity = self.favTitles.capacity
     }
     
-    
-    
-    
-    func getData() {
+    func getData() {  //get Data from JSON
         var usedURL: String = ""
         if selectedTabIndex == 0 { //index of page
             usedURL = popMoviesURL + page + String(pageNumber)
@@ -117,7 +108,6 @@ class BindingValues: ObservableObject {
                 return
             }
             
-            //have data
             var result: MoviesData?
             do {
                 result = try JSONDecoder().decode(MoviesData.self, from: data)
@@ -139,14 +129,4 @@ class BindingValues: ObservableObject {
         })
         .resume()
     }
-    
-    func saveFavoriteData() {
-        self.favorite.append(Movie(title: movieTitle, year: movieYear, posterImage: movieImage, overview: movieOverview))
-        self.save()
-    }
-    
-    func cacheImages() {
-        
-    }
-    
 }

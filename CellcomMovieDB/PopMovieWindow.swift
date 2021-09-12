@@ -41,7 +41,7 @@ struct PopMovieWindow: View {
                     
                     Spacer()
                     //FAVORITE
-                    if bindingValues.titles.contains(bindingValues.movieTitle) {
+                    if bindingValues.favTitles.contains(bindingValues.movieTitle) {
                         heartButtonFill
                     } else {
                         heartButtonUnfill

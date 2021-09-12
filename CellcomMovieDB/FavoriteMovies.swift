@@ -24,7 +24,7 @@ struct FavoriteMovies: View {
     
     var body: some View {
         ScrollView {
-            if bindingValues.favoriteMoviesCapacity == 0{
+            if bindingValues.favoriteMoviesCapacity == 0 {
                 VStack {
                     Spacer()
                     Text("No Favorite Movies")
@@ -42,7 +42,6 @@ struct FavoriteMovies: View {
                     ForEach(0..<bindingValues.favoriteMoviesCapacity, id: \.self) { index in
                         singleFavoriteMovieView(index: Int(index))
                     }
-                 //   .id(UUID())
                 })
             }
         }
@@ -51,10 +50,10 @@ struct FavoriteMovies: View {
     func singleFavoriteMovieView(index: Int) -> some View {
         ZStack {
         Button(action: {
-            bindingValues.movieTitle = bindingValues.titles[index]
-            bindingValues.movieYear = bindingValues.years[index]
-            bindingValues.movieOverview = bindingValues.overviews[index]
-            bindingValues.movieImage = bindingValues.posters[index]
+            bindingValues.movieTitle = bindingValues.favTitles[index]
+            bindingValues.movieYear = bindingValues.favYears[index]
+            bindingValues.movieOverview = bindingValues.favOverviews[index]
+            bindingValues.movieImage = bindingValues.favPosters[index]
             bindingValues.isFullMovieView = true
         }, label: {
             ZStack {
@@ -66,7 +65,7 @@ struct FavoriteMovies: View {
                             .frame(width: thirdScreenWidth, height: 50, alignment: .center)
                             .foregroundColor(.blue)
                         VStack {
-                            Text("\(bindingValues.titles[index])")
+                            Text("\(bindingValues.favTitles[index])")
                                 .font(.body)
                                 .bold()
                                 .minimumScaleFactor(0.5)
@@ -84,7 +83,7 @@ struct FavoriteMovies: View {
                 HStack {
                     Spacer()
                     Button(action:{
-                        bindingValues.movieTitle = bindingValues.titles[index]
+                        bindingValues.movieTitle = bindingValues.favTitles[index]
                         bindingValues.delete()
                     }, label:{
                         Image(systemName: "heart.fill")
@@ -102,7 +101,7 @@ struct FavoriteMovies: View {
     }
     
     func imageFunction(index: Int) -> some View {  //Image from URL and not ontop of system image....  ###################################
-        KFImage(URL(string: bindingValues.imagePath + bindingValues.posters[index]))
+        KFImage(URL(string: bindingValues.imagePath + bindingValues.favPosters[index]))
             .resizable()
             .scaledToFit()
     }

@@ -31,7 +31,7 @@ struct MoviesPageLayout: View {
                             .id(index)
                     }
 
-                    //Next Page
+                    //Next Page - "Load more..."
                     Button (action: {
                         bindingValues.pageNumber = bindingValues.pageNumber + 1
                         bindingValues.getData()
@@ -94,7 +94,7 @@ struct MoviesPageLayout: View {
         })
     }
     
-    func imageFunction(index: Int) -> some View {  //Image from URL and not ontop of system image....  ###################################
+    func imageFunction(index: Int) -> some View { 
         KFImage(URL(string: bindingValues.imagePath + bindingValues.allPosters[index]))
             .resizable()
             .scaledToFit()
